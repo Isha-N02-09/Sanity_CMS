@@ -1,0 +1,44 @@
+{
+  "name": "berrysolutions",
+  "private": true,
+  "version": "1.0.0",
+  "main": "package.json",
+  "license": "UNLICENSED",
+  "scripts": {
+    "build": "sanity build",
+    "deploy": "sanity deploy",
+    "deploy-graphql": "sanity graphql deploy",
+    "dev": "sanity dev",
+    "start": "sanity start",
+    "migrate:services": "tsx scripts/migrate-services.ts",
+    "migrate:home": "tsx scripts/migrate-home-content.ts",
+    "repair:home-portfolio-refs": "tsx scripts/repair-home-portfolio-refs.ts",
+    "repair:home-content-details": "tsx scripts/repair-home-content-details.ts",
+    "repair:home-array-keys": "tsx scripts/repair-home-array-keys.ts"
+  },
+  "keywords": [
+    "sanity"
+  ],
+  "dependencies": {
+    "@sanity/vision": "^6.15.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "sanity": "^6.15.0",
+    "styled-components": "^6.1.18"
+  },
+  "devDependencies": {
+    "@sanity/eslint-config-studio": "^7",
+    "@types/node": "^26.6.2",
+    "@types/react": "^19.2.14",
+    "eslint": "^10.8.1",
+    "prettier": "^3.5",
+    "tsx": "^4.19.2",
+    "typescript": "^5.8"
+  },
+  "prettier": {
+    "bracketSpacing": false,
+    "printWidth": 100,
+    "semi": false,
+    "singleQuote": true
+  }
+}
