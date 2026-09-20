@@ -1,0 +1,133 @@
+.serviceStrip {
+  position: absolute;
+  z-index: 4;
+  right: 0;
+  top: 72px;
+  bottom: 0;
+  width: min(350px, 25vw);
+  color: #000;
+
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  padding: 24px 22px 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 767px) {
+  .serviceStrip {
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    width: 100%;
+    padding: 18px 16px 10px;
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+    margin-top: 12px;
+  }
+
+  .heading {
+    margin-bottom: 10px;
+  }
+
+  .heading h2 {
+    font-size: 16px;
+  }
+
+  .viewport {
+    max-height: 220px;
+  }
+}
+
+.heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.line {
+  width: 28px;
+  height: 1px;
+  background: var(--orange);
+}
+
+.heading h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: #000;
+}
+
+.viewport {
+  position: relative;
+  flex: 1;        /* fills all remaining height inside serviceStrip */
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(180deg, transparent, #000 6%, #000 94%, transparent);
+}
+
+.track {
+  display: flex;
+  flex-direction: column;
+  animation: strip 30s linear infinite;
+}
+
+.viewport:hover .track {
+  animation-play-state: paused;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 1fr 15px;
+  gap: 12px;
+  padding: 20px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.16);
+}
+
+.item b {
+  display: block;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #000;
+}
+
+.item p {
+  margin: 8px 0 0;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 10px;
+  line-height: 1.55;
+}
+
+.item i {
+  font-style: normal;
+  color: var(--orange);
+  text-align: right;
+}
+
+.item {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.item:hover b {
+  text-decoration: underline;
+}
+
+@keyframes strip {
+  from { transform: translateY(0); }
+  to { transform: translateY(-50%); }
+}

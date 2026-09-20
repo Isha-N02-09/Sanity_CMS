@@ -1,0 +1,337 @@
+/*
+  Uses Poppins. Load it once in your app, e.g. in layout.js:
+  import { Poppins } from "next/font/google";
+  const poppins = Poppins({ subsets: ["latin"], weight: ["400","500","600","700"] });
+  ...and apply poppins.className on <body>, or add a Google Fonts <link> in <head>.
+*/
+
+.section {
+  --ink: #262524;
+  --muted: #8a8782;
+  --line: #dedcd6;
+  --bg: #ffffff;
+  --accent: var(--orange, #f45e2b);
+
+  --diameter: 608px;
+  --radius: 304px;
+  --bulge: 200px;
+  --pivot-left: calc(var(--bulge) - var(--radius));
+
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  box-sizing: border-box;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Poppins", "Helvetica Neue", Arial, sans-serif;
+  display: grid;
+  grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.2fr);
+  align-items: start;
+  gap: clamp(2rem, 7vw, 7rem);
+  min-height: calc(100vh * 4.6);
+  padding-inline: var(--home-guide);
+}
+
+.copy {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  max-width: 28rem;
+  padding-top: clamp(3rem, 10vh, 7rem);
+}
+
+.eyebrow {
+  margin: 0 0 1.5rem;
+  color: var(--orange, #f45e2b);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.heading {
+  margin: 0;
+  font-size: clamp(2.8rem, 5vw, 5rem);
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 0.95;
+  color: var(--ink);
+}
+
+.heading span {
+  display: block;
+  color: var(--orange, #f45e2b);
+}
+
+.rule {
+  display: block;
+  position: relative;
+  z-index: -100;
+  width: 1.7rem;
+  height: 2px;
+  margin: 1.5rem 0 1.1rem;
+  background: var(--orange, #f45e2b);
+}
+
+.description {
+  max-width: 28ch;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.knowMore {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-top: 1.75rem;
+  padding: 0.8rem 1.15rem;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  color: var(--ink);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.knowMore:hover,
+.knowMore:focus-visible {
+  background: var(--orange, #f45e2b);
+  border-color: var(--orange, #f45e2b);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.stage {
+  position: relative;
+  width: 100%;
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+  touch-action: pan-x;
+  position: sticky;
+  top: 0;
+}
+
+.orbit {
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  left: var(--pivot-left);
+  width: var(--radius);
+  height: var(--diameter);
+  transform: translateY(-50%);
+  border: 1px solid var(--line);
+  border-left: 0;
+  border-radius: 0 100% 100% 0 / 50%;
+}
+
+.wheel {
+  position: absolute;
+  top: 50%;
+  left: var(--pivot-left);
+  width: 0;
+  height: 0;
+  transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.node {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  transform: rotate(var(--angle));
+}
+
+.dot {
+  position: absolute;
+  top: 0;
+  left: var(--radius);
+  transform: translate(-50%, -50%);
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border-radius: 50%;
+  background: transparent;
+  border: 2px solid var(--line);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dotActive {
+  width: 14px;
+  height: 14px;
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.numberLabel {
+  position: absolute;
+  top: 0;
+  left: calc(var(--radius) + 68px);
+  transform: translate(-50%, -50%);
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  color: var(--line);
+  cursor: pointer;
+  transition: color 0.2s ease;
+  line-height: 1;
+}
+
+.numberLabel:hover,
+.numberLabel:focus-visible {
+  color: var(--muted);
+}
+
+.panel {
+  position: absolute;
+  top: 50%;
+  left: calc(var(--bulge) + 48px);
+  transform: translateY(-50%);
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(1rem, 3vw, 1.75rem);
+  max-width: calc(100% - var(--bulge) - 70px);
+}
+
+.panelNumber {
+  font-weight: 700;
+  font-size: clamp(3rem, 8vw, 4.5rem);
+  line-height: 1;
+  color: var(--ink);
+}
+
+.panelText {
+  padding-top: 0.6rem;
+}
+
+.panelTitle {
+  margin: 0 0 0.35rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--ink);
+}
+
+.panelBody {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--muted);
+  max-width: 26ch;
+}
+
+@media (min-width: 1201px) {
+  .section {
+    grid-template-columns: minmax(360px, 0.72fr) minmax(760px, 1.28fr);
+    gap: clamp(2rem, 4vw, 5rem);
+    padding-left: var(--home-guide);
+    padding-right: var(--home-guide);
+  }
+
+  .copy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    max-width: 36rem;
+    padding-top: 0;
+    text-align: left;
+  }
+
+  .heading {
+    font-size: clamp(2.6rem, 4vw, 4.25rem);
+  }
+
+  .rule {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .stage {
+    overflow: visible;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    width: 100%;
+    margin-left: 0;
+    display: block;
+    min-height: calc(100vh * 4.6);
+    --diameter: 416px;
+    --radius: 208px;
+    --bulge: 90px;
+  }
+
+  .copy,
+  .stage {
+    position: relative;
+    top: auto;
+  }
+
+  .copy {
+    max-width: 28rem;
+    margin: 0 auto;
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
+    height: auto;
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    background: var(--bg);
+  }
+
+  .eyebrow {
+    margin-bottom: 0.75rem;
+    font-size: 0.62rem;
+  }
+
+  .heading {
+    font-size: clamp(2rem, 9vw, 2.8rem);
+  }
+
+  .rule {
+    margin: 0.9rem 0 0.75rem;
+  }
+
+  .description {
+    font-size: 0.82rem;
+    line-height: 1.5;
+  }
+
+  .knowMore {
+    margin-top: 1rem;
+    padding: 0.6rem 0.9rem;
+    font-size: 0.72rem;
+  }
+
+  .stage {
+    position: sticky;
+    top: 12.5rem;
+    height: var(--diameter);
+    margin-top: -3rem;
+    touch-action: pan-y;
+  }
+
+  .numberLabel {
+    font-size: 1.5rem;
+    left: calc(var(--radius) + 40px);
+  }
+
+  .panel {
+    left: calc(var(--bulge) + 24px);
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .panelText {
+    padding-top: 0;
+  }
+}

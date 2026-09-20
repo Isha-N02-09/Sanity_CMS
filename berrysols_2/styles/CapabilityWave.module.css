@@ -1,0 +1,82 @@
+.capabilitySection {
+  position: relative;
+  overflow: hidden;
+  background: #ffffff;
+  border-top: none;
+  border-bottom: none;
+  padding: 0 0 8px;
+}
+
+.lineWrap {
+  position: relative;
+  width: 100%;
+  height: 132px;
+  margin: 0;
+  background: transparent;
+}
+
+.waveSvg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+
+.wavePath {
+  fill: none;
+  stroke: rgba(244, 94, 43, 0.9);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.9;
+  transform-origin: center;
+  animation: waveFloat 5.5s ease-in-out infinite;
+}
+
+.wavePath:nth-child(1) { stroke: rgba(244, 94, 43, 0.96); stroke-width: 1.8; animation-delay: -1.1s; }
+.wavePath:nth-child(2) { stroke: rgba(233, 102, 55, 0.9); stroke-width: 2.2; animation-delay: -0.6s; }
+.wavePath:nth-child(3) { stroke: rgba(223, 110, 66, 0.82); stroke-width: 1.9; animation-delay: -1.8s; }
+.wavePath:nth-child(4) { stroke: rgba(210, 118, 76, 0.72); stroke-width: 2.6; animation-delay: -0.2s; }
+.wavePath:nth-child(5) { stroke: rgba(196, 126, 88, 0.7); stroke-width: 2.1; animation-delay: -1.4s; }
+
+@keyframes waveFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.72;
+  }
+  50% {
+    transform: translate3d(0, 18px, 0) scale(1.015);
+    opacity: 1;
+  }
+}
+
+.captionWrap {
+  width: min(1280px, calc(100% - 28px));
+  margin: 0 auto;
+  padding-left: 8px;
+}
+
+.headline {
+  margin: 0;
+  color: #0b3f75;
+  font-size: clamp(2.7rem, 5vw, 5.2rem);
+  line-height: 0.95;
+  letter-spacing: -0.06em;
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .capabilitySection {
+    padding: 0 0 12px;
+  }
+
+  .lineWrap {
+    height: 120px;
+  }
+
+  .headline {
+    font-size: clamp(2.2rem, 9vw, 3.5rem);
+    line-height: 1;
+  }
+}
